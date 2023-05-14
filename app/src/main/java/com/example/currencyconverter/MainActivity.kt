@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
-import com.example.currencyconverter.home.HomeScreen
+import com.example.currencyconverter.categories.CategoriesScreen
 import com.example.currencyconverter.ui.theme.CurrencyConverterTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,5 +22,5 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CurrencyConverterAppTheme() {
-    HomeScreen()
+    CategoriesScreen()
 }
