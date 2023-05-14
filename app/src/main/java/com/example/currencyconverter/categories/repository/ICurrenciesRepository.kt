@@ -1,5 +1,5 @@
 package com.example.currencyconverter.categories.repository
 
-interface ICategoriesRepository {
+interface ICurrenciesRepository {
     fun getAllCurrencies(): String
 }
