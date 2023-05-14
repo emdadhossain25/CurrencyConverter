@@ -1,5 +1,5 @@
 package com.example.currencyconverter.categories.usecase
 
 interface ICurrenciesUseCase {
-    operator fun invoke(): String
+    suspend operator fun invoke(app_id: String): String
 }

@@ -6,7 +6,7 @@ import javax.inject.Inject
 class CurrenciesUseCase @Inject constructor(
     private val repository: ICurrenciesRepository
 ) : ICurrenciesUseCase {
-    override fun invoke(): String {
-        return repository.getAllCurrencies()
+    override suspend fun invoke(app_id:String): String {
+        return repository.getAllCurrencies(app_id)
     }
 }

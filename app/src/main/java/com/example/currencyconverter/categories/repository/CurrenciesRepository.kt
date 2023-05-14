@@ -1,11 +1,12 @@
 package com.example.currencyconverter.categories.repository
 
+import com.example.currencyconverter.categories.service.ICurrencyService
 import javax.inject.Inject
 
 class CurrenciesRepository @Inject constructor(
-//TODO will have to add remote and local datasource
+    val currencyService: ICurrencyService
 ) : ICurrenciesRepository {
-    override fun getAllCurrencies(): String {
-        return "page 42"
+    override suspend fun getAllCurrencies(app_id: String): String {
+        return currencyService.getCurrencies(app_id = app_id)
     }
 }
