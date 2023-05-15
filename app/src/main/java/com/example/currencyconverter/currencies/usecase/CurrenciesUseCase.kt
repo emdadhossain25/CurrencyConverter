@@ -1,6 +1,6 @@
-package com.example.currencyconverter.categories.usecase
+package com.example.currencyconverter.currencies.usecase
 
-import com.example.currencyconverter.categories.repository.ICurrenciesRepository
+import com.example.currencyconverter.currencies.repository.ICurrenciesRepository
 import javax.inject.Inject
 
 class CurrenciesUseCase @Inject constructor(

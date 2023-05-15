@@ -1,6 +1,6 @@
-package com.example.currencyconverter.categories.repository
+package com.example.currencyconverter.currencies.repository
 
-import com.example.currencyconverter.categories.service.ICurrencyService
+import com.example.currencyconverter.currencies.service.ICurrencyService
 import javax.inject.Inject
 
 class CurrenciesRepository @Inject constructor(

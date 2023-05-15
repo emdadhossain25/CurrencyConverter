@@ -1,10 +1,10 @@
 package com.example.currencyconverter
 
-import com.example.currencyconverter.categories.repository.CurrenciesRepository
-import com.example.currencyconverter.categories.repository.ICurrenciesRepository
-import com.example.currencyconverter.categories.service.ICurrencyService
-import com.example.currencyconverter.categories.usecase.CurrenciesUseCase
-import com.example.currencyconverter.categories.usecase.ICurrenciesUseCase
+import com.example.currencyconverter.currencies.repository.CurrenciesRepository
+import com.example.currencyconverter.currencies.repository.ICurrenciesRepository
+import com.example.currencyconverter.currencies.service.ICurrencyService
+import com.example.currencyconverter.currencies.usecase.CurrenciesUseCase
+import com.example.currencyconverter.currencies.usecase.ICurrenciesUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

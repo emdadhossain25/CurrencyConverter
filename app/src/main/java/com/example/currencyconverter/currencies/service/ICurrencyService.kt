@@ -1,4 +1,4 @@
-package com.example.currencyconverter.categories.service
+package com.example.currencyconverter.currencies.service
 
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,9 +1,9 @@
-package com.example.currencyconverter.categories.viewmodel
+package com.example.currencyconverter.currencies.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.currencyconverter.categories.usecase.ICurrenciesUseCase
+import com.example.currencyconverter.currencies.usecase.ICurrenciesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
