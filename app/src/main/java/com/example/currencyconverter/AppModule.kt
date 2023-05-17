@@ -1,10 +1,10 @@
 package com.example.currencyconverter
 
-import com.example.currencyconverter.currencies.repository.CurrenciesRepository
-import com.example.currencyconverter.currencies.repository.ICurrenciesRepository
-import com.example.currencyconverter.currencies.service.ICurrencyService
-import com.example.currencyconverter.currencies.usecase.CurrenciesUseCase
-import com.example.currencyconverter.currencies.usecase.ICurrenciesUseCase
+import com.example.currencyconverter.currencies.repository.LatestRepository
+import com.example.currencyconverter.currencies.repository.ILatestRepository
+import com.example.currencyconverter.currencies.service.ILatestService
+import com.example.currencyconverter.currencies.usecase.LatestUseCase
+import com.example.currencyconverter.currencies.usecase.ILatestUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -12,7 +12,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -31,8 +30,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providesCurrencyService(retrofit: Retrofit): ICurrencyService {
-        return retrofit.create(ICurrencyService::class.java)
+    fun providesCurrencyService(retrofit: Retrofit): ILatestService {
+        return retrofit.create(ILatestService::class.java)
     }
 
 
@@ -45,11 +44,11 @@ class AppModule {
         // func (whatwillbeprovided):Whatisaskedfor
         @Binds
         @Singleton
-        fun provideCurrenciesRepository(repo: CurrenciesRepository): ICurrenciesRepository
+        fun provideLatestRepository(repo: LatestRepository): ILatestRepository
 
         @Binds
         @Singleton
-        fun provideCurrencyUseCase(currenciesUseCase: CurrenciesUseCase): ICurrenciesUseCase
+        fun provideLatestUseCase(latesUseCase: LatestUseCase): ILatestUseCase
 
     }
 }

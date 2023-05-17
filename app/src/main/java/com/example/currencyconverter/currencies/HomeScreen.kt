@@ -9,12 +9,12 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.currencyconverter.currencies.viewmodel.CurrenciesViewModel
+import com.example.currencyconverter.currencies.viewmodel.HomeViewModel
 import com.example.currencyconverter.common.Constants
 
 @Composable
 fun CategoriesScreen(
-    viewModel: CurrenciesViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
 
     DisposableEffect(key1 = Unit) {
