@@ -1,4 +1,4 @@
-package com.example.currencyconverter
+package com.example.currencyconverter.di
 
 import com.example.currencyconverter.currencies.repository.LatestRepository
 import com.example.currencyconverter.currencies.repository.ILatestRepository
