@@ -12,8 +12,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.currencyconverter.common.Constants
-import com.example.currencyconverter.currencies.viewmodel.HomeViewModel
-import com.example.currencyconverter.currencies.viewmodel.ViewState
+import com.example.currencyconverter.currencies.currencyfeature.HomeViewModel
+import com.example.currencyconverter.currencies.currencyfeature.ViewState
 
 
 @OptIn(ExperimentalFoundationApi::class)

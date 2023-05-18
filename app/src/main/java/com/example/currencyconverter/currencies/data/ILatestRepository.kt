@@ -1,4 +1,4 @@
-package com.example.currencyconverter.currencies.repository
+package com.example.currencyconverter.currencies.data
 
 import com.example.currencyconverter.currencies.model.LatestModel
 

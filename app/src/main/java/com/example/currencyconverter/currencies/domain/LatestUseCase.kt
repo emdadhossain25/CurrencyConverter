@@ -1,7 +1,7 @@
-package com.example.currencyconverter.currencies.usecase
+package com.example.currencyconverter.currencies.domain
 
 import com.example.currencyconverter.currencies.model.LatestModel
-import com.example.currencyconverter.currencies.repository.ILatestRepository
+import com.example.currencyconverter.currencies.data.ILatestRepository
 import javax.inject.Inject
 
 class LatestUseCase @Inject constructor(

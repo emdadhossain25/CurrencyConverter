@@ -1,13 +1,11 @@
-package com.example.currencyconverter.currencies.repository
+package com.example.currencyconverter.currencies.data
 
 import android.util.Log
 import com.example.currencyconverter.currencies.model.LatestModel
-import com.example.currencyconverter.currencies.service.ILatestService
+import com.example.currencyconverter.currencies.datasource.ILatestService
 import com.example.currencyconverter.db.CurrencyConverterDao
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class LatestRepository @Inject constructor(
