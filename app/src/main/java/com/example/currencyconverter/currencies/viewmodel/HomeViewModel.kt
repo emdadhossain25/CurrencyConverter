@@ -1,6 +1,5 @@
 package com.example.currencyconverter.currencies.viewmodel
 
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -12,20 +11,34 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
+sealed class ViewState {
+    object Loading : ViewState()
+    data class Success(val data: LatestModel) : ViewState()
+    data class Error(val errorMessage: String) : ViewState()
+}
+
+
+
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     val useCase: ILatestUseCase
 ) : ViewModel() {
 
-    private val _latestModelRates: MutableState<Map<String, String>> =
-        mutableStateOf(emptyMap<String, String>())
+    private val _viewState: MutableState<ViewState> =
+        mutableStateOf(ViewState.Loading)
 
-    val latestModel: State<Map<String, String>> = _latestModelRates
+    val viewState: State<ViewState> = _viewState
     fun getCurrencies(app_id: String) {
 
         viewModelScope.launch {
-            var latestModel: LatestModel = useCase(app_id)
-            _latestModelRates.value = latestModel.rates
+            try {
+
+                var latestModel: LatestModel = useCase(app_id)
+                _viewState.value = ViewState.Success(latestModel)
+            }catch (e:Exception){
+                _viewState.value=ViewState.Error(e.message?:"Unknown Error")
+            }
         }
     }
 }

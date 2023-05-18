@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.currencyconverter.common.Constants
 import com.example.currencyconverter.currencies.viewmodel.HomeViewModel
+import com.example.currencyconverter.currencies.viewmodel.ViewState
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -29,15 +30,19 @@ fun CategoriesScreen(
         onDispose { }
     }
 
-    val result by remember { viewModel.latestModel }
-    val list: List<String> = result.keys.toList()
-
-
-
-
-    LazyVerticalGrid(cells = GridCells.Adaptive(minSize = 128.dp)) {
-        items(list) { item ->
-            SingleItemCategory(item)
+    val viewState by remember { viewModel.viewState }
+    when (viewState) {
+        is ViewState.Error -> Text(text = (viewState as ViewState.Error).errorMessage)
+        ViewState.Loading -> Text(text = "Loading")
+        is ViewState.Success -> {
+            val data = (viewState as ViewState.Success).data
+            val result = data.rates
+            val list: List<String> = result.keys.toList()
+            LazyVerticalGrid(cells = GridCells.Adaptive(minSize = 128.dp)) {
+                items(list) { item ->
+                    SingleItemCategory(item)
+                }
+            }
         }
     }
 
