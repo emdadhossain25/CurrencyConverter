@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.currencyconverter.currencies.model.LatestModel
 import com.example.currencyconverter.currencies.usecase.ILatestUseCase
+import com.example.currencyconverter.db.CurrencyConverterDao
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,10 +20,10 @@ sealed class ViewState {
 }
 
 
-
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    val useCase: ILatestUseCase
+    val useCase: ILatestUseCase,
+    val currencyConverterDao: CurrencyConverterDao
 ) : ViewModel() {
 
     private val _viewState: MutableState<ViewState> =
@@ -36,9 +37,15 @@ class HomeViewModel @Inject constructor(
 
                 var latestModel: LatestModel = useCase(app_id)
                 _viewState.value = ViewState.Success(latestModel)
-            }catch (e:Exception){
-                _viewState.value=ViewState.Error(e.message?:"Unknown Error")
+            } catch (e: Exception) {
+                _viewState.value = ViewState.Error(e.message ?: "Unknown Error")
             }
+        }
+    }
+
+    fun saveToDb(latestModel: LatestModel) {
+        viewModelScope.launch {
+            currencyConverterDao.saveLatestModel(latestModel)
         }
     }
 }
