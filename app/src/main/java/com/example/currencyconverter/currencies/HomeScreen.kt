@@ -35,10 +35,9 @@ fun CategoriesScreen(
         is ViewState.Error -> Text(text = (viewState as ViewState.Error).errorMessage)
         ViewState.Loading -> Text(text = "Loading")
         is ViewState.Success -> {
-
-            val data =(viewState as ViewState.Success).data
+            val data = (viewState as ViewState.Success).data
             val result = data.rates
-            val list: List<String> = result.keys.toList()
+            val list: List<String> = result?.keys?.toList() ?: emptyList()
             LazyVerticalGrid(cells = GridCells.Adaptive(minSize = 128.dp)) {
                 items(list) { item ->
                     SingleItemCategory(item)

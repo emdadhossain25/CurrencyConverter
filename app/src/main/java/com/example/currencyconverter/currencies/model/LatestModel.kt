@@ -5,10 +5,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "latest_info")
 data class LatestModel(
-    val base: String,
-    val disclaimer: String,
-    val license: String,
-    val rates: Map<String, String>,
     @PrimaryKey
-    val timestamp: Int
+    val base: String = "USD",
+    val disclaimer: String? = null,
+    val license: String? = null,
+    val rates: Map<String, String>? = emptyMap(),
+    var timestamp: Int = -1
 )
