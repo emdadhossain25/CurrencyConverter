@@ -43,9 +43,5 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun saveToDb(latestModel: LatestModel) {
-        viewModelScope.launch {
-            currencyConverterDao.saveLatestModel(latestModel)
-        }
-    }
+
 }
