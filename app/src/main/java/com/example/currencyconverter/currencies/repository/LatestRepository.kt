@@ -1,8 +1,8 @@
-package com.example.currencyconverter.currencies.data
+package com.example.currencyconverter.currencies.repository
 
 import android.util.Log
 import com.example.currencyconverter.currencies.model.LatestModel
-import com.example.currencyconverter.currencies.datasource.ILatestService
+import com.example.currencyconverter.currencies.service.ILatestService
 import com.example.currencyconverter.db.CurrencyConverterDao
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext

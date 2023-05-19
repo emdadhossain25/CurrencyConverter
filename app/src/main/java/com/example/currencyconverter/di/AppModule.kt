@@ -1,10 +1,10 @@
 package com.example.currencyconverter.di
 
-import com.example.currencyconverter.currencies.data.LatestRepository
-import com.example.currencyconverter.currencies.data.ILatestRepository
-import com.example.currencyconverter.currencies.datasource.ILatestService
-import com.example.currencyconverter.currencies.domain.LatestUseCase
-import com.example.currencyconverter.currencies.domain.ILatestUseCase
+import com.example.currencyconverter.currencies.repository.LatestRepository
+import com.example.currencyconverter.currencies.repository.ILatestRepository
+import com.example.currencyconverter.currencies.service.ILatestService
+import com.example.currencyconverter.currencies.usecase.LatestUseCase
+import com.example.currencyconverter.currencies.usecase.ILatestUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

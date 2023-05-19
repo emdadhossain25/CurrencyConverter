@@ -1,4 +1,4 @@
-package com.example.currencyconverter.currencies.domain
+package com.example.currencyconverter.currencies.usecase
 
 import com.example.currencyconverter.currencies.model.LatestModel
 
