@@ -19,7 +19,7 @@ import javax.inject.Singleton
     replaces = [DBModule::class]
 )
 @Module
-class TestDatabaseModule {
+object TestDatabaseModule {
 
 
     @Singleton
