@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.CustomRunner"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -62,8 +62,26 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
-    implementation 'com.google.dagger:hilt-android:2.44.2'
-    kapt 'com.google.dagger:hilt-compiler:2.44.2'
+
+
+
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
+
+    
+
+    implementation "com.google.dagger:hilt-android:$dagger_hilt_version"
+    testImplementation "com.google.dagger:hilt-android:$dagger_hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$dagger_hilt_version"
+    kaptTest "com.google.dagger:hilt-android-compiler:$dagger_hilt_version"
+
+    // For instrumented tests.
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$dagger_hilt_version"
+    // ...with Kotlin.
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$dagger_hilt_version"
+
 //    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
 

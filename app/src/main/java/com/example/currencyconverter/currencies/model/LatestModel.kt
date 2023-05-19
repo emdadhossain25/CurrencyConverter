@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "latest_info")
 data class LatestModel(
     @PrimaryKey
-    val base: String = "USD",
+    var base: String = "USD",
     val disclaimer: String? = null,
     val license: String? = null,
     val rates: Map<String, String>? = emptyMap(),
