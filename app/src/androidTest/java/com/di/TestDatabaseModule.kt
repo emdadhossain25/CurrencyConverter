@@ -32,10 +32,9 @@ object TestDatabaseModule {
         ).allowMainThreadQueries().build()
     }
 
-
-    @Provides
     @Singleton
-    fun provideCurrencyConverterDao(db: CurrencyConverterDatabase): CurrencyConverterDao {
+    @Provides
+    fun provideCurrencyConverterDao(db:CurrencyConverterDatabase):CurrencyConverterDao{
         return db.provideDao()
     }
 }

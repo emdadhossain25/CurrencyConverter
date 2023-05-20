@@ -20,9 +20,10 @@ class LatestRepository @Inject constructor(
                 //condition to check 30 minutes difference before every call to api
                 if ((dao.getLatestInfoDB() == null) || ((FRESH_TIMEOUT - dao.getLatestInfoDB().timestamp) > 1800000)) {
                     hold = currencyService.getLatest(app_id = app_id)
-                    dao.saveLatestModel(hold)
+                    dao.deleteAll() // delete all previous entries
+                    dao.saveLatestModel(hold) // insert into db
                 } else {
-                    hold = dao.getLatestInfoDB()
+                    hold = dao.getLatestInfoDB() //
                 }
                 hold
             } catch (e: Exception) {

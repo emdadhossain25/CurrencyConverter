@@ -1,6 +1,7 @@
 package com.example.currencyconverter.db
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
@@ -13,4 +14,7 @@ interface CurrencyConverterDao {
 
     @Insert(onConflict = REPLACE)
     suspend fun saveLatestModel(model: LatestModel)
+
+    @Query("DELETE FROM latest_info")
+    suspend fun deleteAll()
 }

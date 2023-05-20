@@ -24,6 +24,7 @@ class CurrencyConverterDaoTest {
     @Inject
     lateinit var currencyConverterDatabase: CurrencyConverterDatabase
 
+
     @Inject
     lateinit var currencyConverterDao: CurrencyConverterDao
 
@@ -33,11 +34,48 @@ class CurrencyConverterDaoTest {
     }
 
     @Test
-    fun insertLatestModel_returnLatestModel() = runTest {
-        val latestmodel = LatestModel("LFD")
+    fun insertEmptyLatesModel_CheckBase_USD() = runTest {
+        //arrange
+        currencyConverterDao.deleteAll()
+        val latestmodel = LatestModel()
+
+
+        //act
         currencyConverterDao.saveLatestModel(latestmodel)
         val result = currencyConverterDao.getLatestInfoDB()
+
+        //assert
         Assert.assertEquals("USD", result.base)
+    }
+
+
+    @Test
+    fun insertLFD_NotEqualUSD() = runTest {
+        //arrange
+        currencyConverterDao.deleteAll()
+        val latestmodel = LatestModel("LFD")
+
+
+        //act
+        currencyConverterDao.saveLatestModel(latestmodel)
+        val result = currencyConverterDao.getLatestInfoDB()
+
+        //assert
+        Assert.assertNotEquals("USD", result.base)
+    }
+
+    @Test
+    fun insertBase_CheckBase_Correct() = runTest {
+        //arrange
+        currencyConverterDao.deleteAll()
+        val latestmodel3 = LatestModel("LFD")
+
+        //act
+        currencyConverterDao.saveLatestModel(latestmodel3)
+        val result = currencyConverterDao.getLatestInfoDB()
+
+        //assert
+        Assert.assertEquals("LFD", result.base)
     }
 
     @After
