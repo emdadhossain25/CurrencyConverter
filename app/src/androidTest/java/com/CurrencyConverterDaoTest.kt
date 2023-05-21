@@ -22,7 +22,7 @@ class CurrencyConverterDaoTest {
 
 
     @Inject
-    lateinit var currencyConverterDatabase: CurrencyConverterDatabase
+    lateinit var currencyConverterDatabase: CurrencyConverterDatabase //injecting db using hilt
 
 
     @Inject

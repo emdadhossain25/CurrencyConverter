@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.currencyconverter.currencies.model.LatestModel
 import com.example.currencyconverter.currencies.usecase.ILatestUseCase
-import com.example.currencyconverter.db.CurrencyConverterDao
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,8 +21,7 @@ sealed class ViewState {
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    val useCase: ILatestUseCase,
-    val currencyConverterDao: CurrencyConverterDao
+    val useCase: ILatestUseCase
 ) : ViewModel() {
 
     private val _viewState: MutableState<ViewState> =
