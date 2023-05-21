@@ -75,8 +75,9 @@ dependencies {
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
 
     // coroutine  deps
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
-    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
 
     //hilt deps
     implementation "com.google.dagger:hilt-android:$dagger_hilt_version"
@@ -108,5 +109,10 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    // mockito deps
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.9.0'
+
+    testImplementation 'org.mockito:mockito-core:3.6.0'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
 
 }
