@@ -7,16 +7,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.currencyconverter.currencies.model.LatestModel
 import com.example.currencyconverter.currencies.usecase.ILatestUseCase
+import com.example.currencyconverter.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-sealed class ViewState {
-    object Loading : ViewState()
-    data class Success(val data: LatestModel) : ViewState()
-    data class Error(val errorMessage: String) : ViewState()
-}
 
 
 @HiltViewModel
@@ -24,7 +20,7 @@ class HomeViewModel @Inject constructor(
     val useCase: ILatestUseCase
 ) : ViewModel() {
 
-    private val _viewState: MutableState<ViewState> =
+    protected val _viewState: MutableState<ViewState> =
         mutableStateOf(ViewState.Loading)
 
     val viewState: State<ViewState> = _viewState
