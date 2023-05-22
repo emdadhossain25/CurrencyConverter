@@ -55,7 +55,16 @@ dependencies {
 
     // testing junit deps
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation 'com.squareup.retrofit2:retrofit-mock:2.7.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+
+
+    //workmanager deps
+    implementation "androidx.work:work-runtime:$work_manager_version"
+    implementation "androidx.work:work-runtime-ktx:$work_manager_version"
+
+    implementation 'com.jakewharton.timber:timber:5.0.1'
 
     //espresso deps
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -69,6 +78,12 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
+
+    //lifecycle version
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
     // core testing deps
     testImplementation "androidx.arch.core:core-testing:2.1.0"
@@ -114,5 +129,9 @@ dependencies {
 
     testImplementation 'org.mockito:mockito-core:3.6.0'
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
+
+    //timber for loggin
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
 
 }
