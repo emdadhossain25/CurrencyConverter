@@ -34,7 +34,7 @@ class CurrencyConverterDaoTest {
     }
 
     @Test
-    fun insertEmptyLatesModel_CheckBase_USD() = runTest {
+    fun insertEmptyLatestModel_CheckBaseisEqualUSD() = runTest {
         //arrange
         currencyConverterDao.deleteAll()
         val latestmodel = LatestModel()
@@ -50,7 +50,7 @@ class CurrencyConverterDaoTest {
 
 
     @Test
-    fun insertLFD_NotEqualUSD() = runTest {
+    fun insertLFD_CheckBaseNotEqualUSD() = runTest {
         //arrange
         currencyConverterDao.deleteAll()
         val latestmodel = LatestModel("LFD")
@@ -65,7 +65,7 @@ class CurrencyConverterDaoTest {
     }
 
     @Test
-    fun insertBase_CheckBase_Correct() = runTest {
+    fun insertBaseLFD_CheckBaseisLFD() = runTest {
         //arrange
         currencyConverterDao.deleteAll()
         val latestmodel3 = LatestModel("LFD")
