@@ -23,8 +23,8 @@ class LatestRepository @Inject constructor(
                 currencyService.getLatestService(app_id = app_id).collect {
 
                     dao.deleteAll() // delete all previous entries
-                    dao.saveLatestModel(it) // insert into db
-                    hold = it
+                    dao.saveLatestModel(it.body() ?: LatestModel()) // insert into db
+                    hold = it.body() ?: LatestModel()
                 }
                 hold
             } else {
