@@ -1,11 +1,11 @@
-package com.example.currencyconverter.currencies.view
+package com.example.currencyconverter.currencyFeature.view
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.currencyconverter.currencies.model.LatestModel
-import com.example.currencyconverter.currencies.usecase.ILatestUseCase
+import com.example.currencyconverter.currencyFeature.model.LatestModel
+import com.example.currencyconverter.currencyFeature.usecase.ILatestUseCase
 import com.example.currencyconverter.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

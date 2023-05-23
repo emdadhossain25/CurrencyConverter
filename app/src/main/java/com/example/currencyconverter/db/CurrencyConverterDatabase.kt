@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.currencyconverter.common.MapTypeConverter
-import com.example.currencyconverter.currencies.model.LatestModel
+import com.example.currencyconverter.currencyFeature.model.LatestModel
 
 @Database(
     entities = [LatestModel::class],

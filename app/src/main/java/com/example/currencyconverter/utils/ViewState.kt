@@ -1,6 +1,6 @@
 package com.example.currencyconverter.utils
 
-import com.example.currencyconverter.currencies.model.LatestModel
+import com.example.currencyconverter.currencyFeature.model.LatestModel
 
 
 sealed class ViewState {

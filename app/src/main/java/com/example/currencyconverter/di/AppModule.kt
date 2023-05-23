@@ -1,12 +1,12 @@
 package com.example.currencyconverter.di
 
-import com.example.currencyconverter.currencies.repository.LatestRepository
-import com.example.currencyconverter.currencies.repository.ILatestRepository
-import com.example.currencyconverter.currencies.service.ApiHelper
-import com.example.currencyconverter.currencies.service.IApiHelper
-import com.example.currencyconverter.currencies.service.ILatestService
-import com.example.currencyconverter.currencies.usecase.LatestUseCase
-import com.example.currencyconverter.currencies.usecase.ILatestUseCase
+import com.example.currencyconverter.currencyFeature.repository.LatestRepository
+import com.example.currencyconverter.currencyFeature.repository.ILatestRepository
+import com.example.currencyconverter.currencyFeature.service.ApiHelper
+import com.example.currencyconverter.currencyFeature.service.IApiHelper
+import com.example.currencyconverter.currencyFeature.service.ILatestService
+import com.example.currencyconverter.currencyFeature.usecase.LatestUseCase
+import com.example.currencyconverter.currencyFeature.usecase.ILatestUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

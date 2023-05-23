@@ -1,9 +1,9 @@
-package com.example.currencyconverter.currencies.viewmodel
+package com.example.currencyconverter.currencyFeature.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.currencyconverter.currencies.repository.LatestRepository
-import com.example.currencyconverter.currencies.usecase.LatestUseCase
-import com.example.currencyconverter.currencies.view.HomeViewModel
+import com.example.currencyconverter.currencyFeature.repository.LatestRepository
+import com.example.currencyconverter.currencyFeature.usecase.LatestUseCase
+import com.example.currencyconverter.currencyFeature.view.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain

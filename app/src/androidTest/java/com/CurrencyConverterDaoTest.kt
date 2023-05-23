@@ -1,7 +1,7 @@
 package com
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.currencyconverter.currencies.model.LatestModel
+import com.example.currencyconverter.currencyFeature.model.LatestModel
 import com.example.currencyconverter.db.CurrencyConverterDao
 import com.example.currencyconverter.db.CurrencyConverterDatabase
 import dagger.hilt.android.testing.HiltAndroidRule

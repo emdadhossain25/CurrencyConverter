@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import com.example.currencyconverter.currencies.model.LatestModel
+import com.example.currencyconverter.currencyFeature.model.LatestModel
 import kotlinx.coroutines.flow.Flow
 
 @Dao

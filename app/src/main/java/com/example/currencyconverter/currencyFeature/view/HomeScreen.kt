@@ -1,4 +1,4 @@
-package com.example.currencyconverter.currencies
+package com.example.currencyconverter.currencyFeature
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.lazy.GridCells
@@ -12,7 +12,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.currencyconverter.common.Constants
-import com.example.currencyconverter.currencies.view.HomeViewModel
+import com.example.currencyconverter.currencyFeature.view.HomeViewModel
 import com.example.currencyconverter.utils.ViewState
 
 

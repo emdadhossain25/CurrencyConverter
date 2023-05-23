@@ -1,4 +1,4 @@
-package com.example.currencyconverter.currencies.model
+package com.example.currencyconverter.currencyFeature.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

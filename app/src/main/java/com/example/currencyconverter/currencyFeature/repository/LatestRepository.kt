@@ -1,9 +1,7 @@
-package com.example.currencyconverter.currencies.repository
+package com.example.currencyconverter.currencyFeature.repository
 
-import android.util.Log
-import com.example.currencyconverter.currencies.model.LatestModel
-import com.example.currencyconverter.currencies.service.IApiHelper
-import com.example.currencyconverter.currencies.service.ILatestService
+import com.example.currencyconverter.currencyFeature.model.LatestModel
+import com.example.currencyconverter.currencyFeature.service.IApiHelper
 import com.example.currencyconverter.db.CurrencyConverterDao
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.first

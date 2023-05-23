@@ -1,7 +1,6 @@
-package com.example.currencyconverter.currencies.service
+package com.example.currencyconverter.currencyFeature.service
 
-import com.example.currencyconverter.currencies.model.LatestModel
-import kotlinx.coroutines.flow.Flow
+import com.example.currencyconverter.currencyFeature.model.LatestModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 

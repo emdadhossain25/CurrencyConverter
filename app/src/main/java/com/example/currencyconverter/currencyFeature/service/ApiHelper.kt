@@ -1,4 +1,4 @@
-package com.example.currencyconverter.currencies.service
+package com.example.currencyconverter.currencyFeature.service
 
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

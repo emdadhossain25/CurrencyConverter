@@ -1,8 +1,7 @@
-package com.example.currencyconverter.currencies.usecase
+package com.example.currencyconverter.currencyFeature.usecase
 
-import com.example.currencyconverter.currencies.model.LatestModel
-import com.example.currencyconverter.currencies.repository.ILatestRepository
-import kotlinx.coroutines.flow.Flow
+import com.example.currencyconverter.currencyFeature.model.LatestModel
+import com.example.currencyconverter.currencyFeature.repository.ILatestRepository
 import javax.inject.Inject
 
 class LatestUseCase @Inject constructor(
