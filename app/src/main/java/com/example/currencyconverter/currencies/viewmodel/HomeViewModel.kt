@@ -1,8 +1,5 @@
 package com.example.currencyconverter.currencies.view
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,14 +17,13 @@ class HomeViewModel @Inject constructor(
     val useCase: ILatestUseCase
 ) : ViewModel() {
 
-    protected val _viewState: MutableLiveData<ViewState> =
+    private val _viewState: MutableLiveData<ViewState> =
         MutableLiveData(ViewState.Loading)
 
     val viewState: LiveData<ViewState> = _viewState
     fun getCurrencies(app_id: String) {
         viewModelScope.launch {
             try {
-
                 var latestModel: LatestModel = useCase(app_id)
                 _viewState.value = ViewState.Success(latestModel)
             } catch (e: Exception) {

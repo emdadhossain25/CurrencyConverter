@@ -6,6 +6,7 @@ import com.example.currencyconverter.db.CurrencyConverterDao
 import com.example.currencyconverter.db.CurrencyConverterDatabase
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.*
 import javax.inject.Inject
@@ -45,7 +46,7 @@ class CurrencyConverterDaoTest {
         val result = currencyConverterDao.getLatestInfoDB()
 
         //assert
-        Assert.assertEquals("USD", result.base)
+        Assert.assertEquals("USD", result.first().base)
     }
 
 
@@ -61,7 +62,7 @@ class CurrencyConverterDaoTest {
         val result = currencyConverterDao.getLatestInfoDB()
 
         //assert
-        Assert.assertNotEquals("USD", result.base)
+        Assert.assertNotEquals("USD", result.first().base)
     }
 
     @Test
@@ -75,7 +76,7 @@ class CurrencyConverterDaoTest {
         val result = currencyConverterDao.getLatestInfoDB()
 
         //assert
-        Assert.assertEquals("LFD", result.base)
+        Assert.assertEquals("LFD", result.first().base)
     }
 
     @After

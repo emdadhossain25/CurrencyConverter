@@ -10,5 +10,5 @@ data class LatestModel(
     val disclaimer: String? = null,
     val license: String? = null,
     val rates: Map<String, String>? = emptyMap(),
-    var timestamp: Int = -1
+    var timestamp: Int? = -1
 )

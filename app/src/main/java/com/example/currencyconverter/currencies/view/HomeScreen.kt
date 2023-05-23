@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -20,7 +21,7 @@ import com.example.currencyconverter.utils.ViewState
 fun CategoriesScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    val viewStateObject = viewModel.viewState.observeAsState()
+    val viewStateObject by viewModel.viewState.observeAsState()
 
     DisposableEffect(key1 = Unit) {
         if (!(Constants.APP_ID.isNullOrBlank())) {
@@ -31,14 +32,14 @@ fun CategoriesScreen(
     }
 
 
-    when (viewStateObject.value) {
+    when (viewStateObject) {
 
-        is ViewState.Error -> Text(text = (viewStateObject.value as ViewState.Error).errorMessage)
+        is ViewState.Error -> Text(text = (viewStateObject as ViewState.Error).errorMessage)
 
         ViewState.Loading -> Text(text = "Loading")
 
         is ViewState.Success -> {
-            val data = (viewStateObject.value as ViewState.Success).data
+            val data = (viewStateObject as ViewState.Success).data
             val result = data.rates
             val list: List<String> = result?.keys?.toList() ?: emptyList()
             LazyVerticalGrid(cells = GridCells.Adaptive(minSize = 128.dp)) {
@@ -48,7 +49,7 @@ fun CategoriesScreen(
             }
         }
         null -> {
-            Text(text = (viewStateObject.value as ViewState.Error).errorMessage)
+            Text(text = (viewStateObject as ViewState.Error).errorMessage)
         }
     }
 

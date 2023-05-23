@@ -2,6 +2,7 @@ package com.example.currencyconverter.currencies.usecase
 
 import com.example.currencyconverter.currencies.model.LatestModel
 import com.example.currencyconverter.currencies.repository.ILatestRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class LatestUseCase @Inject constructor(

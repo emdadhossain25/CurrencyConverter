@@ -2,6 +2,8 @@ package com.example.currencyconverter.di
 
 import com.example.currencyconverter.currencies.repository.LatestRepository
 import com.example.currencyconverter.currencies.repository.ILatestRepository
+import com.example.currencyconverter.currencies.service.ApiHelper
+import com.example.currencyconverter.currencies.service.IApiHelper
 import com.example.currencyconverter.currencies.service.ILatestService
 import com.example.currencyconverter.currencies.usecase.LatestUseCase
 import com.example.currencyconverter.currencies.usecase.ILatestUseCase
@@ -36,9 +38,10 @@ class AppModule {
         return retrofit.create(ILatestService::class.java)
     }
 
+
     @Provides
     @Singleton
-    fun provideDispather():CoroutineDispatcher{
+    fun provideDispather(): CoroutineDispatcher {
         return Dispatchers.IO
     }
 
@@ -56,6 +59,10 @@ class AppModule {
         @Binds
         @Singleton
         fun provideLatestUseCase(latesUseCase: LatestUseCase): ILatestUseCase
+
+        @Binds
+        @Singleton
+        fun provideApiHelper(apiHelper: ApiHelper): IApiHelper
 
     }
 }
