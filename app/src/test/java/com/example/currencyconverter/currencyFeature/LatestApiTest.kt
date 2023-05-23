@@ -29,28 +29,34 @@ class LatestApiTest {
     }
 
     @Test
-
     fun getProductsEmptyBodyResponse() = runTest {
+
+        //arrange
         val mockResponse = MockResponse()
         mockResponse.setBody("{}")
         mockWebServer.enqueue(mockResponse)
 
+        //act
         val response = latestApi.getLatest(Constants.APP_ID)
-
         mockWebServer.takeRequest()
+
+        //assert
         Assert.assertEquals(true, response.body()?.base ?: "USD" == "USD")
     }
 
     @Test
     fun getProductsNullBodyErrorCode() = runTest {
+        //arrange
         val mockResponse = MockResponse()
         mockResponse.setResponseCode(400)
         mockResponse.setBody("")
+
+        //act
         mockWebServer.enqueue(mockResponse)
-
         val response = latestApi.getLatest(Constants.APP_ID)
-
         mockWebServer.takeRequest()
+
+        //assert
         Assert.assertEquals(400, response.code())
         Assert.assertEquals(false, response.isSuccessful)
         Assert.assertEquals(null, response.body())
@@ -58,18 +64,21 @@ class LatestApiTest {
 
     @Test
     fun getProducts_ReturnLatestModel() = runTest {
+        //arrange
         val mockResponse = MockResponse()
         val content = Helper.readFileResource("/response.json")
         mockResponse.setBody(content)
         mockResponse.setResponseCode(200)
+
+        //act
         mockWebServer.enqueue(mockResponse)
-
         val response = latestApi.getLatest(Constants.APP_ID)
-
         mockWebServer.takeRequest()
+
+        //assert
         Assert.assertEquals("OK", response.message())
         Assert.assertEquals(true, response.isSuccessful)
-        Assert.assertEquals(1684854000, response.body()?.timestamp?:-1)
+        Assert.assertEquals(1684854000, response.body()?.timestamp ?: -1)
     }
 
     @After

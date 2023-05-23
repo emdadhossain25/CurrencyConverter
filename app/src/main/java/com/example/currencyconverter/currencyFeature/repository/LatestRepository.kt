@@ -24,7 +24,7 @@ class LatestRepository @Inject constructor(
 
                     dao.deleteAll() // delete all previous entries
                     dao.saveLatestModel(it.body() ?: LatestModel()) // insert into db
-                    hold = it.body() ?: LatestModel()
+                    hold = dao.getLatestInfoDB().first()
                 }
                 hold
             } else {
