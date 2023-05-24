@@ -26,7 +26,7 @@ class LatestRepository @Inject constructor(
                     dao.saveLatestModel(it.body() ?: LatestModel()) // insert into db
                     hold = dao.getLatestInfoDB().first()
                 }
-                hold
+
             } else {
                 hold = dao.getLatestInfoDB().first()
 

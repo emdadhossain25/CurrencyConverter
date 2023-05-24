@@ -8,7 +8,7 @@ data class LatestModel(
     @PrimaryKey
     var base: String = "USD",
     val disclaimer: String? = null,
-    val license: String? = null,
+    var license: String? = null,
     val rates: Map<String, String>? = emptyMap(),
     var timestamp: Int? = -1
 )
