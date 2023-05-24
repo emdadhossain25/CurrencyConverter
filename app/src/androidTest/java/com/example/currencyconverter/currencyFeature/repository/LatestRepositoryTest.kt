@@ -43,14 +43,12 @@ class LatestRepositoryTest {
 
     private val testDispatcher = StandardTestDispatcher()
 
-    private var latestModel: LatestModel? = LatestModel()
 
     @Before
     fun setup() {
         hiltAndroidRule.inject()
         MockitoAnnotations.openMocks(this)
         Dispatchers.setMain(testDispatcher)
-        latestModel = LatestModel("LFD", null, null, null, 20)
 
     }
 
