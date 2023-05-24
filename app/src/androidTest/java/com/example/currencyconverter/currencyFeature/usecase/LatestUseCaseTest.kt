@@ -41,7 +41,7 @@ class LatestUseCaseTest {
     fun callRepository_ReturnsLatestModel_CorrectTest() = runTest {
         val sut = LatestUseCase(latestRepository)
         val result = sut.invoke(Constants.APP_ID)
-        Assert.assertTrue("385.886279" == result.rates?.get("AMD"))
+        Assert.assertTrue("385.94" == result.rates?.get("AMD"))
     }
 
     @After

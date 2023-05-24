@@ -33,7 +33,6 @@ class LatestRepositoryTest {
     @Inject
     lateinit var currencyConverterDatabase: CurrencyConverterDatabase //injecting db using hilt
 
-
     @Inject
     lateinit var currencyConverterDao: CurrencyConverterDao
 

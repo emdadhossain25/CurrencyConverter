@@ -2,8 +2,6 @@ package com.example.currencyconverter.db
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.currencyconverter.currencyFeature.model.LatestModel
-import com.example.currencyconverter.db.CurrencyConverterDao
-import com.example.currencyconverter.db.CurrencyConverterDatabase
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.flow.first
@@ -24,7 +22,6 @@ class CurrencyConverterDaoTest {
 
     @Inject
     lateinit var currencyConverterDatabase: CurrencyConverterDatabase //injecting db using hilt
-
 
     @Inject
     lateinit var currencyConverterDao: CurrencyConverterDao
