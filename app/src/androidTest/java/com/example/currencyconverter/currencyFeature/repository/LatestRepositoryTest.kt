@@ -1,7 +1,6 @@
 package com.example.currencyconverter.currencyFeature.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import app.cash.turbine.test
 import com.example.currencyconverter.common.Constants
 import com.example.currencyconverter.currencyFeature.model.LatestModel
 import com.example.currencyconverter.currencyFeature.service.IApiHelper
@@ -65,7 +64,7 @@ class LatestRepositoryTest {
     }
 
     @Test
-    fun testForIntegration_ReturnsDBOutPut() = runTest {
+    fun testingIntegration_ReturnsDBQuery() = runTest {
 
 
         val sut = LatestRepository(
@@ -87,7 +86,4 @@ class LatestRepositoryTest {
         Dispatchers.resetMain()
     }
 
-    companion object {
-        val FRESH_TIMEOUT = System.currentTimeMillis() / 1000
-    }
 }

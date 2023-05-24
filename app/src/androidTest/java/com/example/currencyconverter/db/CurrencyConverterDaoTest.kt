@@ -1,4 +1,4 @@
-package com
+package com.example.currencyconverter.db
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.currencyconverter.currencyFeature.model.LatestModel
