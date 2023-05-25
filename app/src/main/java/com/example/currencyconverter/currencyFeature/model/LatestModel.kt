@@ -9,6 +9,6 @@ data class LatestModel(
     var base: String = "USD",
     val disclaimer: String? = null,
     var license: String? = null,
-    val rates: Map<String, String>? = emptyMap(),
+    var rates: Map<String, String>? = emptyMap(),
     var timestamp: Int? = -1
 )

@@ -58,6 +58,8 @@ dependencies {
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
     testImplementation 'com.squareup.retrofit2:retrofit-mock:2.7.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    testImplementation "com.google.truth:truth:1.1"
+
 
 
     //workmanager deps
