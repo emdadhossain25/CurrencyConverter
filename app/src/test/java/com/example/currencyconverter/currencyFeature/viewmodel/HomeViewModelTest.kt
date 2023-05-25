@@ -41,7 +41,10 @@ class HomeViewModelTest {
     fun `call getCurrencies() method`() {
 
         homeViewModel.getCurrencies(Constants.APP_ID)
-        Truth.assertThat(homeViewModel.viewState.value).isEqualTo(ViewState.Success(LatestModel("HUN")))
+        Truth.assertThat((homeViewModel.viewState.value))
+            .isEqualTo(ViewState.Success(LatestModel(base = "HUN")))
+        Truth.assertThat((homeViewModel.viewState.value))
+            .isEqualTo(ViewState.Success(LatestModel(timestamp = -1)))
     }
 
     @After
