@@ -1,22 +1,27 @@
 package com.example.currencyconverter.currencyFeature
 
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.Card
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.currencyconverter.common.Constants
+import com.example.currencyconverter.currencyFeature.view.DropDownMenu
 import com.example.currencyconverter.currencyFeature.view.HomeViewModel
+import com.example.currencyconverter.currencyFeature.view.OutLineTextFieldSample
 import com.example.currencyconverter.utils.ViewState
 
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CategoriesScreen(
     viewModel: HomeViewModel = hiltViewModel()
@@ -32,24 +37,52 @@ fun CategoriesScreen(
     }
 
 
-    when (viewStateObject) {
+    var modifier: Modifier = Modifier
+        .fillMaxWidth()
+        .padding(10.dp)
 
-        is ViewState.Error -> Text(text = (viewStateObject as ViewState.Error).errorMessage)
+    Column(
+        modifier = modifier,
+    ) {
 
-        ViewState.Loading -> Text(text = "Loading")
+        when (viewStateObject) {
 
-        is ViewState.Success -> {
-            val data = (viewStateObject as ViewState.Success).data
-            val result = data.rates
-            val list: List<String> = result?.keys?.toList() ?: emptyList()
-            LazyVerticalGrid(cells = GridCells.Adaptive(minSize = 128.dp)) {
-                items(list) { item ->
-                    SingleItemCategory(item)
+
+            is ViewState.Error -> Text(
+                modifier = modifier
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center,
+
+                text = (viewStateObject as ViewState.Error).errorMessage
+            )
+
+            ViewState.Loading -> Text(text = "Loading")
+
+            is ViewState.Success -> {
+                val data = (viewStateObject as ViewState.Success).data
+                val result = data.rates
+                val list: List<String> = result?.keys?.toList() ?: emptyList()
+
+
+                OutLineTextFieldSample()
+                DropDownFor(list, modifier)
+
+
+
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(3),
+                    contentPadding = PaddingValues(12.dp)
+                ) {
+                    items(result?.toList() ?: emptyList()) { item ->
+                        SingleItemCategory(item)
+                    }
                 }
+
+
             }
-        }
-        null -> {
-            Text(text = (viewStateObject as ViewState.Error).errorMessage)
+            null -> {
+                Text(text = (viewStateObject as ViewState.Error).errorMessage)
+            }
         }
     }
 
@@ -57,7 +90,40 @@ fun CategoriesScreen(
 }
 
 @Composable
-fun SingleItemCategory(item: String) {
-    Text(item)
+fun SingleItemCategory(item: Pair<String, String>) {
+    val paddingModifier = Modifier.padding(16.dp)
+
+    Card(
+        modifier = paddingModifier
+            .width(30.dp),
+    ) {
+        Column(modifier = paddingModifier) {
+            Text(
+                text = item.first,
+                fontSize = 14.sp,
+                textAlign = TextAlign.Center,
+            )
+            Text(
+                text = item.second,
+                fontSize = 14.sp,
+                textAlign = TextAlign.Center,
+
+                )
+        }
+
+    }
 }
+
+@Composable
+fun DropDownFor(list: List<String>, boxScope: Modifier) {
+    Box(
+        modifier = boxScope
+
+    ) {
+        DropDownMenu(list = list)
+
+    }
+}
+
+
 
