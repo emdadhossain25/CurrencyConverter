@@ -46,8 +46,4 @@ class HomeViewModelTest {
         Truth.assertThat((homeViewModel.viewState.value))
             .isEqualTo(ViewState.Success(LatestModel(timestamp = -1)))
     }
-
-    @After
-    fun tearDown() {
-    }
 }

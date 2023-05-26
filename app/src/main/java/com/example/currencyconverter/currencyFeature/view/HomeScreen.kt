@@ -91,11 +91,12 @@ fun CategoriesScreen(
 
 @Composable
 fun SingleItemCategory(item: Pair<String, String>) {
-    val paddingModifier = Modifier.padding(16.dp)
+    val paddingModifier = Modifier.padding(10.dp)
 
     Card(
         modifier = paddingModifier
-            .width(30.dp),
+            .width(60.dp)
+            .height(80.dp),
     ) {
         Column(modifier = paddingModifier) {
             Text(
