@@ -27,6 +27,7 @@ fun CategoriesScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val viewStateObject by viewModel.viewState.observeAsState()
+    val conversionStateObject by viewModel.viewStateForConversion.observeAsState()
 
     DisposableEffect(key1 = Unit) {
         if (!(Constants.APP_ID.isNullOrBlank())) {
@@ -74,6 +75,7 @@ fun CategoriesScreen(
                     contentPadding = PaddingValues(12.dp)
                 ) {
                     items(result?.toList() ?: emptyList()) { item ->
+
                         SingleItemCategory(item)
                     }
                 }

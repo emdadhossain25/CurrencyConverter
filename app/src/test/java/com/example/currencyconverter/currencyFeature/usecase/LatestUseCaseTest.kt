@@ -2,7 +2,6 @@ package com.example.currencyconverter.currencyFeature.usecase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.currencyconverter.common.Constants
-import com.example.currencyconverter.currencyFeature.repository.FakeLatestRepository
 import com.google.common.truth.Truth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.StandardTestDispatcher

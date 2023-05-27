@@ -5,6 +5,8 @@ import com.example.currencyconverter.currencyFeature.repository.ILatestRepositor
 import com.example.currencyconverter.currencyFeature.service.ApiHelper
 import com.example.currencyconverter.currencyFeature.service.IApiHelper
 import com.example.currencyconverter.currencyFeature.service.ILatestService
+import com.example.currencyconverter.currencyFeature.usecase.ConversionUseCase
+import com.example.currencyconverter.currencyFeature.usecase.IConversionUseCase
 import com.example.currencyconverter.currencyFeature.usecase.LatestUseCase
 import com.example.currencyconverter.currencyFeature.usecase.ILatestUseCase
 import dagger.Binds
@@ -59,6 +61,10 @@ class AppModule {
         @Binds
         @Singleton
         fun provideLatestUseCase(latesUseCase: LatestUseCase): ILatestUseCase
+
+        @Binds
+        @Singleton
+        fun provideConversionUseCase(conversionUseCase: ConversionUseCase): IConversionUseCase
 
         @Binds
         @Singleton
