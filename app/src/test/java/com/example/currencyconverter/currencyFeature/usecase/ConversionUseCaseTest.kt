@@ -20,10 +20,10 @@ class ConversionUseCaseTest {
 
 
     private val testDispatcher = StandardTestDispatcher()
-    val fakeAmount = 3.0;
+    val fakeMultiplierAmount = 3.0;
     val fakeDividerAmount = 3.3;
-    val fakeBaseAmount = 3.3
-    val base = "USD"
+    val fakeBaseAmountToBeDivided = 3.3
+    val baseCurrencyString = "USD"
 
     @Before
     fun setUp() {
@@ -36,10 +36,10 @@ class ConversionUseCaseTest {
     fun `returns not empty map`() = runTest {
         val sut = ConversionUseCase()
         val result = sut.invoke(
-            fakeAmount,
+            fakeMultiplierAmount,
             fakeDividerAmount,
-            fakeBaseAmount,
-            base
+            fakeBaseAmountToBeDivided,
+            baseCurrencyString
         )
         Truth.assertThat(result.isEmpty()).isFalse()
     }
@@ -48,10 +48,10 @@ class ConversionUseCaseTest {
     fun `returns map of base and multiplied amount`() = runTest {
         val sut = ConversionUseCase()
         val result = sut.invoke(
-            fakeAmount,
+            fakeMultiplierAmount,
             fakeDividerAmount,
-            fakeBaseAmount,
-            base
+            fakeBaseAmountToBeDivided,
+            baseCurrencyString
         )
         Truth.assertThat(result["USD"] == "3.0").isTrue()
     }

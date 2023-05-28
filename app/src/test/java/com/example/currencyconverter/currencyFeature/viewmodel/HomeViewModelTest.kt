@@ -1,6 +1,7 @@
 package com.example.currencyconverter.currencyFeature.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.compose.runtime.collectAsState
 import com.example.currencyconverter.common.Constants
 import com.example.currencyconverter.currencyFeature.model.LatestModel
 import com.example.currencyconverter.currencyFeature.view.HomeViewModel
@@ -15,7 +16,7 @@ import org.junit.Test
 
 class HomeViewModelTest {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var sut: HomeViewModel
     private var fakeAmount: Double? = null
     private var fakeDividerAmount: Double? = null
     private var fakeBaseAmount: Double? = null
@@ -30,7 +31,7 @@ class HomeViewModelTest {
 
     @Before
     fun setUp() {
-        homeViewModel = HomeViewModel(
+        sut = HomeViewModel(
             FakeLatestUseCase(),
             FakeCurrencyConversionUseCase()
         )
@@ -43,8 +44,8 @@ class HomeViewModelTest {
     @Test
     fun `call getCurrencies() method`() {
 
-        homeViewModel.getCurrencies(Constants.APP_ID)
-        Truth.assertThat((homeViewModel.viewState.value))
+        sut.getCurrencies(Constants.APP_ID)
+        Truth.assertThat((sut.viewState.value))
             .isEqualTo(
                 ViewState.Success(
                     LatestModel(
@@ -59,7 +60,7 @@ class HomeViewModelTest {
 
     @Test
     fun `conversion initial state is Loading`() {
-        Truth.assertThat((homeViewModel.viewStateForConversion.value)).isEqualTo(
+        Truth.assertThat((sut.viewStateForConversion.value)).isEqualTo(
             ViewStateForConversion.Loading
         )
     }
@@ -67,14 +68,14 @@ class HomeViewModelTest {
     @Test
     fun `conversion usecase state is success`() = runTest {
 
-        homeViewModel.conversionUseCaseMethod(
+        sut.conversionUseCaseMethod(
             fakeAmount!!,
             fakeDividerAmount!!,
             fakeBaseAmount!!,
             fakeBase!!
         )
         Truth.assertThat(
-            (homeViewModel.viewStateForConversion.value)
+            (sut.viewStateForConversion.value)
         ).isEqualTo(
             ViewStateForConversion.Success(
                 mapOf(
@@ -88,14 +89,14 @@ class HomeViewModelTest {
     @Test
     fun `conversion usecase state is error`() = runTest {
 
-        homeViewModel.conversionUseCaseMethod(
+        sut.conversionUseCaseMethod(
             fakeAmount!!,
             fakeDividerAmount!!,
             fakeBaseAmount!!,
             fakeBase!!
         )
         Truth.assertThat(
-            (homeViewModel.viewStateForConversion.value)
+            (sut.viewStateForConversion.value)
         ).isNotEqualTo(
             ViewStateForConversion.Success(
                 mapOf(
@@ -104,6 +105,28 @@ class HomeViewModelTest {
             )
         )
 
+    }
+
+    @Test
+    fun `check amount state initial value is empty`() {
+        Truth.assertThat(sut.amountState.value?.isNotEmpty()).isFalse()
+    }
+
+    @Test
+    fun `check amount state changes when text field value changed`() {
+        sut.setAmount("2")
+        Truth.assertThat(sut.amountState.value == "2")
+    }
+
+    @Test
+    fun `check currency state initial value is empty`() {
+        Truth.assertThat(sut.currencyState.value?.isNotEmpty()).isFalse()
+    }
+
+    @Test
+    fun `check currency state changes when text field value changed`() {
+        sut.setCurrency("USD")
+        Truth.assertThat(sut.currencyState.value == "USD")
     }
 
 

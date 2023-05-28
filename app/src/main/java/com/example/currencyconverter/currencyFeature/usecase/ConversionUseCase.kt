@@ -5,15 +5,15 @@ import javax.inject.Inject
 
 class ConversionUseCase @Inject constructor() : IConversionUseCase {
     override suspend fun invoke(
-        amount: Double,
+        multiplierAmount: Double,
         dividerAmount: Double,
-        baseAmount: Double,
-        base: String
+        baseAmountToBeDivided: Double,
+        baseCurrencyString: String
     ): Map<String, String> {
         lateinit var resultMap: Map<String, String>;
-        var resultAmount = (baseAmount / dividerAmount) * amount
+        var resultAmount = (baseAmountToBeDivided / dividerAmount) * multiplierAmount
 
-        resultMap = mapOf<String, String>(base to resultAmount.toString())
+        resultMap = mapOf<String, String>(baseCurrencyString to resultAmount.toString())
 
         return resultMap
     }

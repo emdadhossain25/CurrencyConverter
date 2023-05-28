@@ -10,15 +10,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun DropDownMenu(list: List<String>) {
+fun DropDownMenu(
+    list: List<String>,
+    homeViewModel: HomeViewModel
+) {
     val listItems = list
     var isExpanded by remember {
         mutableStateOf(false)
     }
 
-    var currencyCode by remember {
-        mutableStateOf("")
-    }
+    var currencyCode = homeViewModel.currencyState.collectAsState().value
 
     ExposedDropdownMenuBox(
         expanded = isExpanded,
@@ -29,7 +30,9 @@ fun DropDownMenu(list: List<String>) {
 
         TextField(
             value = currencyCode,
-            onValueChange = {},
+            onValueChange = {
+//                homeViewModel::setCurrency
+            },
             textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.End),
             readOnly = true,
             trailingIcon = {
@@ -61,7 +64,7 @@ fun DropDownMenu(list: List<String>) {
                         )
                     },
                     onClick = {
-                        currencyCode = itemValue
+                        homeViewModel.setCurrency(itemValue)
                         isExpanded = false
                     })
 

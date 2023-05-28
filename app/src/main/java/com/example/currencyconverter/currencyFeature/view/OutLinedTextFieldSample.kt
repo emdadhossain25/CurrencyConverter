@@ -2,17 +2,12 @@ package com.example.currencyconverter.currencyFeature.view
 
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.*
-import androidx.compose.ui.text.input.TextFieldValue
-import org.w3c.dom.Text
 
 @Composable
-fun OutLineTextFieldSample() {
-    var text by remember { mutableStateOf(TextFieldValue("")) }
+fun AmountInputTextField(viewModel: HomeViewModel) {
+    val amount = viewModel.amountState.collectAsState().value
     OutlinedTextField(
-        value = text,
-        label = { },
-        onValueChange = {
-            text = it
-        }
+        value = amount,
+        onValueChange = viewModel::setAmount
     )
 }

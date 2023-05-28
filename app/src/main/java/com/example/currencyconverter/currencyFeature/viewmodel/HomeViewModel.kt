@@ -10,6 +10,7 @@ import com.example.currencyconverter.currencyFeature.usecase.ILatestUseCase
 import com.example.currencyconverter.utils.ViewState
 import com.example.currencyconverter.utils.ViewStateForConversion
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,6 +20,16 @@ class HomeViewModel @Inject constructor(
     val useCase: ILatestUseCase,
     val conversionUseCase: IConversionUseCase
 ) : ViewModel() {
+
+
+    private val _currencyState: MutableStateFlow<String> =
+        MutableStateFlow("")
+    val currencyState: MutableStateFlow<String> = _currencyState
+
+    private val _amountState: MutableStateFlow<String> =
+        MutableStateFlow("")
+
+    val amountState: MutableStateFlow<String> = _amountState
 
 
     private val _viewState: MutableLiveData<ViewState> =
@@ -67,6 +78,14 @@ class HomeViewModel @Inject constructor(
                     ViewStateForConversion.Error(e.message ?: "Unknown Error Occured")
             }
         }
+    }
+
+    fun setAmount(amount: String) {
+        _amountState.value = amount
+    }
+
+    fun setCurrency(currency: String) {
+        _currencyState.value = currency
     }
 
 

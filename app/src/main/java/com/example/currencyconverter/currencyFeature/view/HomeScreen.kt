@@ -8,6 +8,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
@@ -18,7 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.currencyconverter.common.Constants
 import com.example.currencyconverter.currencyFeature.view.DropDownMenu
 import com.example.currencyconverter.currencyFeature.view.HomeViewModel
-import com.example.currencyconverter.currencyFeature.view.OutLineTextFieldSample
+import com.example.currencyconverter.currencyFeature.view.AmountInputTextField
 import com.example.currencyconverter.utils.ViewState
 
 
@@ -65,18 +66,28 @@ fun CategoriesScreen(
                 val list: List<String> = result?.keys?.toList() ?: emptyList()
 
 
-                OutLineTextFieldSample()
-                DropDownFor(list, modifier)
+                AmountInputTextField(viewModel)
 
 
+                DropDownForCurrencySelector(
+                    list,
+                    modifier,
+                    viewModel
+                )
 
-                LazyVerticalGrid(
-                    columns = GridCells.Fixed(3),
-                    contentPadding = PaddingValues(12.dp)
+                if (
+                    viewModel.amountState.collectAsState().value?.isNotEmpty() == true &&
+                    viewModel.currencyState.collectAsState().value?.isNotEmpty() == true
                 ) {
-                    items(result?.toList() ?: emptyList()) { item ->
 
-                        SingleItemCategory(item)
+                    LazyVerticalGrid(
+                        columns = GridCells.Fixed(3),
+                        contentPadding = PaddingValues(12.dp)
+                    ) {
+                        items(result?.toList() ?: emptyList()) { item ->
+
+                            SingleItemCategory(item)
+                        }
                     }
                 }
 
@@ -118,12 +129,19 @@ fun SingleItemCategory(item: Pair<String, String>) {
 }
 
 @Composable
-fun DropDownFor(list: List<String>, boxScope: Modifier) {
+fun DropDownForCurrencySelector(
+    list: List<String>,
+    boxScope: Modifier,
+    viewModel: HomeViewModel
+) {
     Box(
         modifier = boxScope
 
     ) {
-        DropDownMenu(list = list)
+        DropDownMenu(
+            list = list,
+            homeViewModel = viewModel
+        )
 
     }
 }
