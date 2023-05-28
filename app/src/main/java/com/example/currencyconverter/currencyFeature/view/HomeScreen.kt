@@ -17,9 +17,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.currencyconverter.common.Constants
+import com.example.currencyconverter.currencyFeature.view.AmountInputTextField
 import com.example.currencyconverter.currencyFeature.view.DropDownMenu
 import com.example.currencyconverter.currencyFeature.view.HomeViewModel
-import com.example.currencyconverter.currencyFeature.view.AmountInputTextField
+import com.example.currencyconverter.currencyFeature.view.HorizontalEndRow
 import com.example.currencyconverter.utils.ViewState
 import com.example.currencyconverter.utils.ViewStateForConversion
 
@@ -40,11 +41,11 @@ fun CategoriesScreen(
 
 
     var modifier: Modifier = Modifier
-        .fillMaxWidth()
-        .padding(10.dp)
+
+
 
     Column(
-        modifier = modifier,
+
     ) {
 
         when (viewStateObject) {
@@ -168,8 +169,11 @@ fun DropDownForCurrencySelector(
     boxScope: Modifier,
     viewModel: HomeViewModel
 ) {
-    Box(
-        modifier = boxScope
+    HorizontalEndRow(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(end=50.dp)
+
 
     ) {
         DropDownMenu(

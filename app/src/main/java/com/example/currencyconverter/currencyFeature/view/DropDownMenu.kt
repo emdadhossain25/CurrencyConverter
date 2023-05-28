@@ -6,8 +6,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun DropDownMenu(
@@ -33,7 +36,11 @@ fun DropDownMenu(
             onValueChange = {
 //                homeViewModel::setCurrency
             },
-            textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.End),
+            textStyle = TextStyle.Default.copy(
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.End
+            ),
             readOnly = true,
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded)
@@ -59,6 +66,7 @@ fun DropDownMenu(
                         Text(
                             modifier = Modifier
                                 .width(70.dp),
+                            fontSize = 16.sp,
                             textAlign = TextAlign.Center,
                             text = itemValue.key,
                         )
