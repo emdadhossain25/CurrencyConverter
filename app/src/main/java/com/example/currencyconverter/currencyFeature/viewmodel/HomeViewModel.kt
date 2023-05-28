@@ -22,6 +22,11 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
 
+    private val _dividerAmountState: MutableStateFlow<String> =
+        MutableStateFlow("")
+    val dividerAmountState = _dividerAmountState
+
+
     private val _currencyState: MutableStateFlow<String> =
         MutableStateFlow("")
     val currencyState: MutableStateFlow<String> = _currencyState
@@ -86,6 +91,10 @@ class HomeViewModel @Inject constructor(
 
     fun setCurrency(currency: String) {
         _currencyState.value = currency
+    }
+
+    fun setDividerAmount(dividerAmount: String) {
+        _dividerAmountState.value = dividerAmount
     }
 
 

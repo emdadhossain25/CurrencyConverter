@@ -21,6 +21,7 @@ import com.example.currencyconverter.currencyFeature.view.DropDownMenu
 import com.example.currencyconverter.currencyFeature.view.HomeViewModel
 import com.example.currencyconverter.currencyFeature.view.AmountInputTextField
 import com.example.currencyconverter.utils.ViewState
+import com.example.currencyconverter.utils.ViewStateForConversion
 
 
 @Composable
@@ -28,7 +29,6 @@ fun CategoriesScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val viewStateObject by viewModel.viewState.observeAsState()
-    val conversionStateObject by viewModel.viewStateForConversion.observeAsState()
 
     DisposableEffect(key1 = Unit) {
         if (!(Constants.APP_ID.isNullOrBlank())) {
@@ -63,14 +63,14 @@ fun CategoriesScreen(
             is ViewState.Success -> {
                 val data = (viewStateObject as ViewState.Success).data
                 val result = data.rates
-                val list: List<String> = result?.keys?.toList() ?: emptyList()
+//                val list: List<String> = result?.keys?.toList() ?: emptyList()
 
 
                 AmountInputTextField(viewModel)
 
 
                 DropDownForCurrencySelector(
-                    list,
+                    result!!,
                     modifier,
                     viewModel
                 )
@@ -86,7 +86,13 @@ fun CategoriesScreen(
                     ) {
                         items(result?.toList() ?: emptyList()) { item ->
 
-                            SingleItemCategory(item)
+                            if (
+                                viewModel.amountState.collectAsState().value?.isNotEmpty() == true &&
+                                viewModel.currencyState.collectAsState().value?.isNotEmpty() == true
+                            ) {
+
+                                SingleItemCategory(item, viewModel)
+                            }
                         }
                     }
                 }
@@ -103,34 +109,62 @@ fun CategoriesScreen(
 }
 
 @Composable
-fun SingleItemCategory(item: Pair<String, String>) {
+fun SingleItemCategory(item: Pair<String, String>, viewModel: HomeViewModel) {
+
     val paddingModifier = Modifier.padding(10.dp)
 
-    Card(
-        modifier = paddingModifier
-            .width(60.dp)
-            .height(80.dp),
-    ) {
-        Column(modifier = paddingModifier) {
-            Text(
-                text = item.first,
-                fontSize = 14.sp,
-                textAlign = TextAlign.Center,
-            )
-            Text(
-                text = item.second,
-                fontSize = 14.sp,
-                textAlign = TextAlign.Center,
+    viewModel.conversionUseCaseMethod(
+        viewModel.amountState.collectAsState().value.toDouble(),
+        viewModel.dividerAmountState.collectAsState().value.toDouble(),
+        item.second.toDouble(),
+        item.first
+    )
+    val mapStateObject by viewModel.viewStateForConversion.observeAsState()
 
-                )
+    when (mapStateObject) {
+        is ViewStateForConversion.Error -> {
+            Text("Unkown Error Occurred")
         }
+        ViewStateForConversion.Loading -> {
+            Text("Loading")
+        }
+        is ViewStateForConversion.Success -> {
+            val item = (mapStateObject as ViewStateForConversion.Success).data
+            item.forEach { item ->
 
+                Card(
+                    modifier = paddingModifier
+                        .width(60.dp)
+                        .height(80.dp),
+                ) {
+                    Column(modifier = paddingModifier) {
+                        Text(
+                            text = item.key,
+                            fontSize = 14.sp,
+                            textAlign = TextAlign.Center,
+                        )
+                        Text(
+                            text = item.value,
+                            fontSize = 14.sp,
+                            textAlign = TextAlign.Center,
+
+                            )
+                    }
+
+                }
+            }
+        }
+        null -> {
+            Text("Null Error occurred")
+        }
     }
+
+
 }
 
 @Composable
 fun DropDownForCurrencySelector(
-    list: List<String>,
+    list: Map<String, String>,
     boxScope: Modifier,
     viewModel: HomeViewModel
 ) {

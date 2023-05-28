@@ -129,5 +129,16 @@ class HomeViewModelTest {
         Truth.assertThat(sut.currencyState.value == "USD")
     }
 
+    @Test
+    fun `check divider amount state initial value is empty`() {
+        Truth.assertThat(sut.dividerAmountState.value?.isNotEmpty()).isFalse()
+    }
+
+    @Test
+    fun `check divider amount statuechanges when text field value changed`() {
+        sut.setDividerAmount("1.0")
+        Truth.assertThat(sut.dividerAmountState.value == "1.0")
+    }
+
 
 }

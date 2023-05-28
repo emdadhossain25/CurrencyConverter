@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun DropDownMenu(
-    list: List<String>,
+    list: Map<String, String>,
     homeViewModel: HomeViewModel
 ) {
     val listItems = list
@@ -52,7 +52,7 @@ fun DropDownMenu(
             expanded = isExpanded,
             onDismissRequest = { isExpanded = false },
         ) {
-            listItems.forEachIndexed { itemIndex, itemValue ->
+            listItems.forEach { itemValue ->
                 DropdownMenuItem(
 
                     text = {
@@ -60,11 +60,12 @@ fun DropDownMenu(
                             modifier = Modifier
                                 .width(70.dp),
                             textAlign = TextAlign.Center,
-                            text = itemValue,
+                            text = itemValue.key,
                         )
                     },
                     onClick = {
-                        homeViewModel.setCurrency(itemValue)
+                        homeViewModel.setCurrency(itemValue.key)
+                        homeViewModel.setDividerAmount(itemValue.value)
                         isExpanded = false
                     })
 
