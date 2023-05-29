@@ -17,10 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.currencyconverter.common.Constants
-import com.example.currencyconverter.currencyFeature.view.AmountInputTextField
-import com.example.currencyconverter.currencyFeature.view.DropDownMenu
-import com.example.currencyconverter.currencyFeature.view.HomeViewModel
-import com.example.currencyconverter.currencyFeature.view.HorizontalEndRow
+import com.example.currencyconverter.currencyFeature.view.*
 import com.example.currencyconverter.utils.ViewState
 import com.example.currencyconverter.utils.ViewStateForConversion
 
@@ -139,17 +136,36 @@ fun SingleItemCategory(item: Pair<String, String>, viewModel: HomeViewModel) {
                         .height(80.dp),
                 ) {
                     Column(modifier = paddingModifier) {
-                        Text(
-                            text = item.key,
-                            fontSize = 14.sp,
-                            textAlign = TextAlign.Center,
-                        )
-                        Text(
-                            text = item.value,
-                            fontSize = 14.sp,
-                            textAlign = TextAlign.Center,
+                        HorizontalCenteredRow(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(5.dp)
 
+
+                        ) {
+
+                            Text(
+                                text = item.key,
+                                fontSize = 16.sp,
+                                textAlign = TextAlign.Center,
                             )
+
+                        }
+                        HorizontalCenteredRow(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(5.dp)
+
+
+                        ) {
+
+                            Text(
+                                text = item.value,
+                                fontSize = 16.sp,
+                                textAlign = TextAlign.Center,
+
+                                )
+                        }
                     }
 
                 }
@@ -172,7 +188,7 @@ fun DropDownForCurrencySelector(
     HorizontalEndRow(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(end=50.dp)
+            .padding(end = 50.dp)
 
 
     ) {
